@@ -63,7 +63,8 @@
 
         <!-- META TAGS -->
         <!-- <meta name="keywords" content="tratament dentar, dentist, stomatolog, clinica stomatologica, cabinet stomatologic, ingrijire și igiena orala, igienizare orala, tratament canal, ortodontie, endodontie"> -->
-        {% seo %}
+        <title>{% if page.collection == "posts" %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ page.title | escape }}{% endif %}</title>
+        {% seo title=false %}
 	</head>
     
 <body>

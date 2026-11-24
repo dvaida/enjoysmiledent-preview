@@ -1,4 +1,5 @@
 url: 'https://enjoysmiledent.ro'
+title: enjoysmiledent.ro
 collections:
   posts:
     output: true
