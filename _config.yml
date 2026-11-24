@@ -6,3 +6,15 @@ collections:
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
+exclude:
+  - tests
+  - scripts
+  - package.json
+  - package-lock.json
+  - playwright.config.mjs
+  - node_modules
+  - test-results
+  - playwright-report
+  - vendor
+  - Gemfile
+  - Gemfile.lock

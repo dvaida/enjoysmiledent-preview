@@ -1,0 +1,12 @@
+{
+  "name": "enjoysmiledent-site-tests",
+  "private": true,
+  "scripts": {
+    "build": "node tests/build.mjs",
+    "test": "node tests/build.mjs && playwright test",
+    "pw": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
