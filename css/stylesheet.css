@@ -4014,16 +4014,27 @@ img.mfp-img {
    The container is 95% wide up to 1200px (responsive.css) and 1140px above. */
 @media (min-width: 993px) {
     .slider-caption{
+        /* the room between the two arrows, from where the caption starts */
+        --hero-room: calc(85vw - 70px);
         top: calc(55% - 120px);
         transform: translateY(-50%);
         margin-left: calc(5vw + 20px);
-        max-width: calc(85vw - 70px);
+        max-width: var(--hero-room);
+    }
+    /* The longest heading line is 19.3 times its font size: when the room is narrower than
+       that, shrink the heading rather than break its line, and the paragraph with it
+       (18px against 56px) so that its line breaks stay where they were. */
+    .slider-caption .display-4{
+        font-size: min(3.5rem, calc(var(--hero-room) / 20));
+    }
+    .slider-caption .lead{
+        font-size: max(14px, min(18px, calc(var(--hero-room) / 62.2)));
     }
 }
 @media (min-width: 1201px) {
     .slider-caption{
+        --hero-room: calc(92.5vw - 35px - max(50vw - 555px, 7.5vw + 35px));
         margin-left: max(0px, calc(590px - 42.5vw));
-        max-width: min(1110px, calc(85vw - 70px));
     }
 }
 
