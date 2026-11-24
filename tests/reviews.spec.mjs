@@ -142,6 +142,15 @@ test.describe('fixture variants', () => {
     }
   });
 
+  test('full: the button label is not underlined, at rest or on hover', async ({ page }) => {
+    await page.goto('/fixture-full/', { waitUntil: 'load' });
+    const button = page.locator('#recenzii .gr-more a.btn');
+    const line = () => button.evaluate((el) => getComputedStyle(el).textDecorationLine);
+    expect(await line()).toBe('none');
+    await button.hover();
+    expect(await line()).toBe('none');
+  });
+
   test('empty: section and link only', async ({ page }) => {
     await page.goto('/fixture-empty/', { waitUntil: 'load' });
     await expect(page.locator('#recenzii')).toHaveCount(1);
