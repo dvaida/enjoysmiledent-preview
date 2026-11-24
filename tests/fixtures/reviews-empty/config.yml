@@ -1,0 +1,2 @@
+baseurl: /fixture-empty
+data_dir: tests/fixtures/reviews-empty/_data

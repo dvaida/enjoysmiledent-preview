@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="{{ '/css/reviews.css' | relative_url }}">
+{%- assign d = site.data.google_reviews %}
+    <!-- GOOGLE REVIEWS START -->
+    <div class="container google-reviews" id="recenzii">
+        <div class="section-title">
+            <h2>Recenzii Google</h2>
+            {%- if d.rating and d.count %}
+            <p class="gr-summary"><span class="gr-score">{{ d.rating | times: 1.0 | round: 1 | replace: ".", "," }}</span> <span class="gr-summary-stars" aria-hidden="true">{% for i in (1..5) %}<i class="fas fa-star"></i>{% endfor %}</span> <span class="gr-count">{{ d.count }} de recenzii</span></p>
+            {%- endif %}
+        </div>
+        {%- if d.reviews and d.reviews.size > 0 %}
+        <div class="gr-list">
+            {%- for r in d.reviews %}
+            <blockquote class="gr-review">
+                <div class="gr-stars" role="img" aria-label="{{ r.rating }} din 5 stele">{% for i in (1..5) %}<i class="fas fa-star{% if i > r.rating %} gr-off{% endif %}"></i>{% endfor %}</div>
+                <p class="gr-text">{{ r.text | escape }}</p>
+                <footer class="gr-author">{{ r.author | escape }}</footer>
+            </blockquote>
+            {%- endfor %}
+        </div>
+        {%- endif %}
+        <div class="gr-more">
+            <a class="btn btn-custom" href="{{ d.reviews_url }}" target="_blank" rel="noopener">Vezi toate recenziile pe Google</a>
+        </div>
+    </div>
+    <!-- GOOGLE REVIEWS END -->

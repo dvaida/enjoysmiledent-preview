@@ -1,0 +1,21 @@
+# Test fixture: placeholder data, never real reviews. Read by tests/reviews.spec.mjs.
+listing_url: "https://www.google.com/maps?cid=1"
+reviews_url: "https://www.google.com/maps/place/PLACEHOLDER-fixture-full"
+rating: 4.9
+count: 57
+collected_on: 2026-11-24
+reviews:
+  - author: "PLACEHOLDER Unu"
+    rating: 5
+    text: |-
+      PLACEHOLDER first paragraph of the first review.
+
+      PLACEHOLDER second paragraph of the first review.
+  - author: "PLACEHOLDER Doi"
+    rating: 4
+    text: |-
+      PLACEHOLDER markup stays text: <b>x</b> & "q"
+  - author: "PLACEHOLDER Trei"
+    rating: 5
+    text: |-
+      PLACEHOLDER third review, one line.

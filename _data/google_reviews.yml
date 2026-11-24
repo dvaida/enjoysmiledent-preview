@@ -1,0 +1,48 @@
+# Only real reviews copied from the clinic's Google listing. Never add an invented one.
+# Texts are verbatim, as their authors wrote them. Authors: first name + initial.
+# rating / count: what the listing showed on the day in collected_on. Update all three together.
+listing_url: "https://www.google.com/maps?cid=14401596664745051921"
+reviews_url: "https://www.google.com/maps/place/Enjoy+Smile+Dent/@46.7451062,23.5223424,17z/data=!4m8!3m7!1s0x47490fec68dd3251:0xc7dcbfdd18944711!8m2!3d46.7451062!4d23.5223424!9m1!1b1!16s%2Fg%2F11vcbdthyr"
+rating: 5.0
+count: 53
+collected_on: 2026-11-24
+reviews:
+  - author: "Ioana N."
+    rating: 5
+    text: |-
+      Recomand cu tot dragul această clinică. În sfârșit pentru prima dată în viață pot spune ca am un zâmbet exact așa cum mi-am dorit mereu.
+
+      Doamna doctor Julieta mi-a prezentat încă de la prima consultație variantele și m-a sfătuit care e cea mai bună variantă pentru mine. Am făcut 3 probe ca să se asigure ca totul e perfect, eu una as fi acceptat și prima probă.
+
+      Am așteptat câteva luni pana sa dau acest review ca sa vad cum se comportă noii dinți, și tot ce pot spune e că pare ca așa au fost mereu.
+
+      Vă mulțumesc frumos ca m-ați ajutat să am un zâmbet perfect!
+  - author: "Eufemia R."
+    rating: 5
+    text: |-
+      De la prima vizita am fost intampinata cu un zambet. Dar in primul rand vreau sa vorbesc despre aceasta echipa de medici,oameni minunati incepand cu doamna Dr.Julieta Ravnic & Dr.Cosmin Ravnic care nu m-au tratat ce pe un client ci ca pe cineva drag.  Avand o lucrare destul de complexa, totul a decurs foarte bine prin profesionalismul, amabilitatea si serviciile la cele mai inalte standarde si tehnica de exceptie.
+      Sunt extrem de multumita si recomand cu toata increderea Enjoy Smile Dent!😃👏
+  - author: "Andrei N."
+    rating: 5
+    text: |-
+      Am avut parte de un serviciu excelent la Enjoy Smile Dent!
+
+      Nadina de la recepție este super drăguță și zâmbăreață.
+
+      Am venit in prima fază cu un abces nefericit. Doamna doctor Răvnic și cu domnul doctor Răvnic au lucrat impecabil și au scos dintele infectat, au pus ulterior implant și peste coroană ceramică. Totul cu grijă față de confortul meu.
+
+      Ulterior mi-am făcut și o albire, care a dat rezultate excelente.
+
+      Nu am cuvinte de laudă destule sincer.
+
+      Și nu, nu îs plătit de ei să zic asta (dacă nu iei în considerare mostra de pastă de dinți elmax)
+
+      Vă recomand să apelați la serviciile lor.
+  - author: "Andreea D."
+    rating: 5
+    text: |-
+      Recomand cu mare incredere clinica Enjoy Smile Dent si in special pe doamnele doctor Julieta Ravnic si Maria Cristescu. Am pasit in clinica cu o mare anxietate, dar din prima secunda am gasit aici blandete si empatie. Desi procesul prin care am trecut a fost unul destul de indelungat, nu regret nicio clipa ca am ales acest ‘safe space’, care mi-a redat increderea si curajul de a zambi cu adevarat. Multumesc!
+  - author: "Lumi B."
+    rating: 5
+    text: |-
+      Apreciez zâmbetul doamnei de la recepție, meticulozitatea și experiența dnei dr. Julieta (dispusă să-mi răspundă la toate nelămuririle), atmosfera și designul cabinetului stomatologic. Recomand!

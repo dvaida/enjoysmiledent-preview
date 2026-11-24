@@ -1,0 +1,88 @@
+/* "Recenzii Google" section of the home page (_includes/google-reviews.html). */
+.google-reviews .gr-summary {
+    margin: 0;
+    font-size: 15px;
+    color: #35414b;
+}
+
+.google-reviews .gr-score {
+    font-size: 1.6rem;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.google-reviews .gr-summary-stars {
+    margin: 0 6px;
+    vertical-align: middle;
+}
+
+.google-reviews .gr-summary-stars i,
+.google-reviews .gr-stars i {
+    color: #02b5a0;
+    margin-right: 2px;
+}
+
+.google-reviews .gr-stars i.gr-off {
+    color: #c6c7c9;
+}
+
+.google-reviews .gr-count {
+    vertical-align: middle;
+}
+
+.gr-list {
+    column-count: 3;
+    column-gap: 30px;
+}
+
+.gr-review {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin: 0 0 30px;
+    padding: 25px 25px 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: 3px solid #02b5a0;
+}
+
+.gr-stars {
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.gr-text {
+    white-space: pre-line;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* The site styles every <footer> as the dark page footer: reset that here. */
+.gr-author {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #35414b;
+}
+
+.gr-more {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .gr-list {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .gr-list {
+        column-count: 1;
+    }
+}

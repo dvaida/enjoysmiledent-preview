@@ -1,0 +1,3 @@
+# Test fixture: links only, no rating, no count, no reviews. Read by tests/reviews.spec.mjs.
+listing_url: "https://www.google.com/maps?cid=2"
+reviews_url: "https://www.google.com/maps/place/PLACEHOLDER-fixture-empty"
