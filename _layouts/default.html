@@ -30,9 +30,6 @@
 		<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        {% if page.canonical_url != "" and page.canonical_url != nil %}
-        <link rel="canonical" href="https://enjoysmiledent.ro/{{ page.canonical_url }}"/>
-        {% endif %}
 
 		<!--  FAVICON  -->
         <link rel="shortcut icon" href="{{ '/img/master/favicon.png' | relative_url }}">
@@ -63,7 +60,8 @@
 
         <!-- META TAGS -->
         <!-- <meta name="keywords" content="tratament dentar, dentist, stomatolog, clinica stomatologica, cabinet stomatologic, ingrijire și igiena orala, igienizare orala, tratament canal, ortodontie, endodontie"> -->
-        {% seo %}
+        <title>{% if page.collection == "posts" %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ page.title | escape }}{% endif %}</title>
+        {% seo title=false %}
 	</head>
     
 <body>
@@ -123,7 +121,7 @@
                     </div>
                     <div class="nav-menus-wrapper" style="padding-top: 10px;">
                         <ul class="nav-menu align-to-right">
-                            <li><a href="{{ '/' | relative_url }}">ACASĂ</a></li>
+                            <li><a href="{{ '/' | relative_url }}">POVESTEA NOASTRĂ</a></li>
 <!--                            <li><a href="#">PAGES</a>-->
 <!--                                <ul class="nav-dropdown">-->
 <!--                                    <li><a href="about-us-1.html">About Us</a></li>-->
