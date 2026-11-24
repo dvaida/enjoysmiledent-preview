@@ -35,25 +35,25 @@
         {% endif %}
 
 		<!--  FAVICON  -->
-        <link rel="shortcut icon" href="/img/master/favicon.png">
+        <link rel="shortcut icon" href="{{ '/img/master/favicon.png' | relative_url }}">
         
         <!-- BOOTSTRAP FRAMEWORK STYLES -->
-        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="{{ '/css/bootstrap.css' | relative_url }}">
         
         <!-- FONT AWESOME ICONS LIBRARY -->
-        <link rel="stylesheet" href="/fonts/css/all.min.css">
+        <link rel="stylesheet" href="{{ '/fonts/css/all.min.css' | relative_url }}">
         
         <!-- MAIN CSS STYLE SHEET -->
-        <link rel="stylesheet" href="/css/navigation.css">
-        <link rel="stylesheet" href="/css/stylesheet.css">
-        <link rel="stylesheet" href="/css/responsive.css">
-        <link rel="stylesheet" href="/css/slick.min.css">
-        <link rel="stylesheet" href="/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="{{ '/css/navigation.css' | relative_url }}">
+        <link rel="stylesheet" href="{{ '/css/stylesheet.css' | relative_url }}">
+        <link rel="stylesheet" href="{{ '/css/responsive.css' | relative_url }}">
+        <link rel="stylesheet" href="{{ '/css/slick.min.css' | relative_url }}">
+        <link rel="stylesheet" href="{{ '/css/owl.carousel.min.css' | relative_url }}">
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- MODERNIZR LIBRARY -->
-        <script src="/js/modernizr-custom.js"></script>
+        <script src="{{ '/js/modernizr-custom.js' | relative_url }}"></script>
 
         <style>
             a.topbar:hover {
@@ -115,15 +115,15 @@
             <div class="container">
                 <nav id="navigation1" class="navigation">
                     <div class="nav-header">
-                        <a class="nav-logo" href="/">
-                            <img src="/img/master/logo.png" style="height: 100px; margin: 0px; padding: 0px;"  class="white-logo" alt="">
+                        <a class="nav-logo" href="{{ '/' | relative_url }}">
+                            <img src="{{ '/img/master/logo.png' | relative_url }}" style="height: 100px; margin: 0px; padding: 0px;"  class="white-logo" alt="">
                         </a>
                         <div class="nav-toggle"><i class="material-icons">menu</i></div>
 
                     </div>
                     <div class="nav-menus-wrapper" style="padding-top: 10px;">
                         <ul class="nav-menu align-to-right">
-                            <li><a href="/">ACASĂ</a></li>
+                            <li><a href="{{ '/' | relative_url }}">ACASĂ</a></li>
 <!--                            <li><a href="#">PAGES</a>-->
 <!--                                <ul class="nav-dropdown">-->
 <!--                                    <li><a href="about-us-1.html">About Us</a></li>-->
@@ -136,8 +136,8 @@
 <!--                                    <li><a href="pricing-table.html">Pricing</a></li>-->
 <!--                                </ul>-->
 <!--                            </li>-->
-                            <li><a href="/servicii">SERVICII</a></li>
-                            <li><a href="/medici">MEDICI</a></li>
+                            <li><a href="{{ '/servicii' | relative_url }}">SERVICII</a></li>
+                            <li><a href="{{ '/medici' | relative_url }}">MEDICI</a></li>
 <!--                            <li><a href="#">DEPARTMENTS</a>-->
 <!--                                <ul class="nav-dropdown">-->
 <!--                                    <li><a href="department-endodontic.html">Endodontic</a></li>-->
@@ -148,8 +148,8 @@
 <!--                                    <li><a href="family-dentistry.html">Family Dentistry</a></li>-->
 <!--                                </ul>-->
 <!--                            </li> -->
-                            <li><a href="/foto">FOTO</a>
-                            <li><a href="/blog">BLOG</a>
+                            <li><a href="{{ '/foto' | relative_url }}">FOTO</a>
+                            <li><a href="{{ '/blog' | relative_url }}">BLOG</a>
 <!--                                <ul class="nav-dropdown">-->
 <!--                                    <li><a href="blog-grid.html">Blog Grid</a></li>-->
 <!--                                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>-->
@@ -157,7 +157,7 @@
 <!--                                    <li><a href="blog-single.html">Blog Single</a></li>-->
 <!--                                </ul>-->
                             </li>
-                            <li><a href="/contact">CONTACT</a>
+                            <li><a href="{{ '/contact' | relative_url }}">CONTACT</a>
 <!--                                <ul class="nav-dropdown">-->
 <!--                                    <li><a href="contact-us-1.html">Contact Us One</a></li>-->
 <!--                                    <li><a href="contact-us-2.html">Contact Us Two</a></li>-->
@@ -184,7 +184,7 @@
             <div class="row">
               <div class="col-lg-3">
                 <div class="footer-col">
-                  <figure class="footer-logo"><img src="/img/master/logo.png" alt=""></figure>
+                  <figure class="footer-logo"><img src="{{ '/img/master/logo.png' | relative_url }}" alt=""></figure>
                   <!--<p>additional info here.</p>-->
                   <div class="footer-icon">
                     <div class="span-fi">
@@ -291,10 +291,10 @@
     <!--SCROLL TOP START-->
 
     <!-- JAVASCRIPTS -->
-    <script src="/js/plugins.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/navigation.js"></script>
+    <script src="{{ '/js/plugins.js' | relative_url }}"></script>
+    <script src="{{ '/js/bootstrap.min.js' | relative_url }}"></script>
+    <script src="{{ '/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/js/navigation.js' | relative_url }}"></script>
     <!-- JAVASCRIPTS END -->
     
     </body>
