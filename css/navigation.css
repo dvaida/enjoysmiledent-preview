@@ -409,7 +409,7 @@ body{
 .nav-menu > li:hover > a .submenu-indicator-chevron,
 .nav-menu > .active > a .submenu-indicator-chevron,
 .nav-menu > .focus > a .submenu-indicator-chevron {
-  border-color: transparent #3AB3DF #3AB3DF transparent;
+  border-color: transparent #02b5a0 #02b5a0 transparent;
 }
 
 .navigation-portrait .submenu-indicator.submenu-indicator-up {
@@ -504,7 +504,7 @@ body{
 }
 
 .nav-search-button:hover .nav-search-icon {
-  color: #967ADC;
+  color: #02b5a0;
 }
 
 .nav-search > form {
@@ -583,7 +583,7 @@ body{
   text-align: center;
   text-decoration: none;
   border-radius: 4px;
-  background-color: #967ADC;
+  background-color: #02b5a0;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
@@ -667,7 +667,7 @@ body{
 
 .nav-dropdown > li:hover > a,
 .nav-dropdown > li.focus > a {
-  color: #002642;
+  color: #35414b;
 }
 
 .nav-dropdown.nav-dropdown-left {
@@ -728,7 +728,7 @@ body{
 
 .nav-dropdown > li:hover > a .submenu-indicator-chevron,
 .nav-dropdown > .focus > a .submenu-indicator-chevron {
-  border-color: transparent #3AB3DF #3AB3DF transparent;
+  border-color: transparent #02b5a0 #02b5a0 transparent;
 }
 
 .navigation-landscape .nav-dropdown.nav-dropdown-left .submenu-indicator {
@@ -1029,7 +1029,7 @@ body{
 
 .megamenu-list > li > a:hover {
   color: #ffffff;
-  background-color: #3AB3DF;
+  background-color: #02b5a0;
 }
 
 .megamenu-list > li.megamenu-list-title > a {
@@ -1094,7 +1094,7 @@ body{
 	transition: background .3s;
 }
 .btn-show:hover{
-	background-color: #967ADC;
+	background-color: #02b5a0;
 }
 
 .info{
