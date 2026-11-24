@@ -4006,6 +4006,27 @@ img.mfp-img {
     text-align: left;
 }
 
+/* Where the arrows show (above 992px): the caption's middle sits on the arrows' line and its
+   text stays between the arrows, 15px clear of each.
+   Vertical: the arrows are centred between 10% and 100% of the slider; each slide is pushed down 120px.
+   Horizontal: an arrow ends 7.5vw + 20px from its edge; the caption starts at the container's
+   text edge, (100vw - container) / 2 + 15px. The margin is whatever is missing between the two.
+   The container is 95% wide up to 1200px (responsive.css) and 1140px above. */
+@media (min-width: 993px) {
+    .slider-caption{
+        top: calc(55% - 120px);
+        transform: translateY(-50%);
+        margin-left: calc(5vw + 20px);
+        max-width: calc(85vw - 70px);
+    }
+}
+@media (min-width: 1201px) {
+    .slider-caption{
+        margin-left: max(0px, calc(590px - 42.5vw));
+        max-width: min(1110px, calc(85vw - 70px));
+    }
+}
+
 .slider-caption h2{
     font-weight: 400;
 }
