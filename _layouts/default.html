@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US" class="no-js">
-	<head>
+	<head>{% unless site.preview %}
         <!-- Osano -->
         <script src="https://cmp.osano.com/cXwii6y1RS/361ac062-b4c8-45e1-a9a8-3cb05df7cfea/osano.js"></script>
         <!-- Google tag (gtag.js) -->
@@ -26,7 +26,7 @@
                 });
                 return false;
             }
-        </script>
+        </script>{% endunless %}{% if site.preview %}<meta name="robots" content="noindex, nofollow"><script>function gtag_report_conversion(url) { return false; }</script>{% endif %}
 		<meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
