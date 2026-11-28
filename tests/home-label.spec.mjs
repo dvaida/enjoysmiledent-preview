@@ -1,5 +1,5 @@
-// The home link is labelled "Povestea Noastră" in the nav and in every breadcrumb (D-6). The story page and the
-// service pages have no breadcrumb block (D-39).
+// The menu entry "POVESTEA NOASTRĂ" opens the story page (D-34); the home link is labelled "Povestea Noastră" in
+// every breadcrumb (D-6). The story page and the service pages have no breadcrumb block (D-39).
 import { test, expect, variantOf, pagesOf } from './lib/site.mjs';
 
 const pages = pagesOf('prod');
@@ -22,7 +22,7 @@ for (const p of pages) {
 
     const nav = page.locator('.nav-menu > li > a').first();
     expect.soft(await nav.textContent(), 'nav label').toBe('POVESTEA NOASTRĂ');
-    expect.soft(await nav.evaluate((a) => a.href), 'nav target').toBe(root);
+    expect.soft(await nav.evaluate((a) => a.href), 'nav target').toBe(`${root}povestea-noastra/`);
 
     if (p === '/') return;
     if (NO_CRUMB.includes(p)) {
