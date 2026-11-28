@@ -38,3 +38,13 @@ for (const line of LINES) {
     expect(filesContaining(line)).toEqual(['_data/doctors.yml']);
   });
 }
+
+// Brief §4.5: the two LinkedIn addresses, without any tracking tail, live in the data file only.
+for (const address of [
+  'https://www.linkedin.com/in/ancuta-marcu-a15189378',
+  'https://www.linkedin.com/in/maria-cristescu-715160447',
+]) {
+  test(`${address} is written only in _data/doctors.yml`, () => {
+    expect(filesContaining(address)).toEqual(['_data/doctors.yml']);
+  });
+}
