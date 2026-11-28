@@ -1,7 +1,18 @@
-// The home link is labelled "Povestea Noastră" in the nav and in every breadcrumb (D-6).
+// The home link is labelled "Povestea Noastră" in the nav and in every breadcrumb (D-6). The story page and the
+// service pages have no breadcrumb block (D-39).
 import { test, expect, variantOf, pagesOf } from './lib/site.mjs';
 
 const pages = pagesOf('prod');
+const NO_CRUMB = [
+  '/povestea-noastra/',
+  '/servicii/odontologie/',
+  '/servicii/endodontie/',
+  '/servicii/parodontologie/',
+  '/servicii/chirurgie-dentara/',
+  '/servicii/protetica-dentara/',
+  '/servicii/pedodontie/',
+  '/servicii/ortodontie/',
+];
 
 for (const p of pages) {
   test(`page ${p} labels the home link "Povestea Noastră"`, async ({ page, baseURL }, testInfo) => {
@@ -14,6 +25,10 @@ for (const p of pages) {
     expect.soft(await nav.evaluate((a) => a.href), 'nav target').toBe(root);
 
     if (p === '/') return;
+    if (NO_CRUMB.includes(p)) {
+      expect.soft(await page.locator('.pages-title').count(), 'breadcrumb blocks').toBe(0);
+      return;
+    }
     const crumb = page.locator('.pages-title p a').first();
     expect.soft(await crumb.textContent(), 'breadcrumb label').toBe('Povestea Noastră');
     expect.soft(await crumb.evaluate((a) => a.href), 'breadcrumb target').toBe(root);
