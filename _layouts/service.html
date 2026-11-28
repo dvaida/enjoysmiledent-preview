@@ -1,4 +1,20 @@
 ---
 layout: default
+img_base: https://storage.googleapis.com/enjoysmiledent
 ---
-<section class="svc"><div class="container"><h1>{{ page.heading }}</h1><div class="svc-text">{{ content }}</div></div></section>
+<link rel="stylesheet" href="{{ '/css/service.css' | relative_url }}">
+<section class="svc">
+    <div class="container">
+        <h1 class="svc-title">{{ page.heading }}</h1>
+        <div class="row">
+            <div class="col-lg-7 svc-text">{{ content }}</div>
+            <div class="col-lg-5"><img class="svc-picture" src="{{ '/img/servicii/colaj.jpg' | relative_url }}" alt="Tratamente stomatologice"></div>
+        </div>
+        <p class="svc-quote">„Ai grijă de zâmbetul tău, indiferent de nevoile dentare. Echipa noastră îți oferă soluții personalizate, de la prevenție și tratamente dentare până la reabilitări complexe.”</p>
+    </div>
+    <div class="svc-cta"><p>Programează o consultație!</p></div>
+    <p class="svc-contact">
+        <a onclick="gtag_report_conversion();" href="tel: +40770139255">0770 139 255</a><br>
+        <a href="mailto:contact@enjoysmiledent.ro">contact@enjoysmiledent.ro</a>
+    </p>
+</section>
