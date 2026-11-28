@@ -1,5 +1,5 @@
-// The menu entry "POVESTEA NOASTRĂ" opens the story page (D-34); the home link is labelled "Povestea Noastră" in
-// every breadcrumb (D-6). The story page and the service pages have no breadcrumb block (D-39).
+// The menu entry "POVESTEA NOASTRĂ" opens the story page (D-34); every breadcrumb starts with "Acasă", the home
+// link (D-34). The story page and the service pages have no breadcrumb block (D-39).
 import { test, expect, variantOf, pagesOf } from './lib/site.mjs';
 
 const pages = pagesOf('prod');
@@ -15,7 +15,7 @@ const NO_CRUMB = [
 ];
 
 for (const p of pages) {
-  test(`page ${p} labels the home link "Povestea Noastră"`, async ({ page, baseURL }, testInfo) => {
+  test(`page ${p} labels the home link "Acasă"`, async ({ page, baseURL }, testInfo) => {
     const { baseurl } = variantOf(testInfo);
     const root = new URL(`${baseurl}/`, baseURL).href;
     await page.goto(`${baseurl}${p}`, { waitUntil: 'domcontentloaded' });
@@ -30,7 +30,7 @@ for (const p of pages) {
       return;
     }
     const crumb = page.locator('.pages-title p a').first();
-    expect.soft(await crumb.textContent(), 'breadcrumb label').toBe('Povestea Noastră');
+    expect.soft(await crumb.textContent(), 'breadcrumb label').toBe('Acasă');
     expect.soft(await crumb.evaluate((a) => a.href), 'breadcrumb target').toBe(root);
   });
 }
