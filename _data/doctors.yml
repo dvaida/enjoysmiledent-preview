@@ -1,0 +1,22 @@
+julieta:
+  name: Dr. Julieta Răvnic
+  line: Stomatologie Generală - Estetică Dentară - Protetică
+  photo: 256_squared.jpg
+cosmin:
+  name: Dr. Cosmin Răvnic
+  line: Stomatologie generală - Protetică
+  photo: 288_squared.jpg
+ancuta:
+  name: Dr. Ancuța Marcu
+  line: Medic Specialist Ortodonție și Ortopedie Dento Facială
+  photo: 273_squared_1.jpg
+  linkedin: https://www.linkedin.com/in/ancuta-marcu-a15189378
+maria:
+  name: Dr. Maria Cristescu
+  line: Medic specialist pedodonție
+  photo: 265_squared.jpg
+  linkedin: https://www.linkedin.com/in/maria-cristescu-715160447
+mihai:
+  name: Dr. Mihai Sigartău
+  line: Medic specialist chirurgie dento-alveolară
+  photo: male_medic.jpg
