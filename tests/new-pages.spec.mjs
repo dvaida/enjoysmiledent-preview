@@ -43,8 +43,8 @@ for (const [p, heading, description, bold] of PAGES) {
     const response = await page.goto(`${baseurl}${p}`, { waitUntil: 'domcontentloaded' });
     expect(response.status(), 'status').toBe(200);
 
-    const h1s = await page.$$eval('h1', (hs) => hs.map((h) => h.textContent.trim()));
-    expect.soft(h1s, 'h1').toEqual([heading]);
+    const h1s = await page.$$eval('h1', (hs) => hs.map((h) => h.textContent.replace(/\s+/g, ' ').trim()));
+    expect.soft(h1s, 'h1').toEqual([`Enjoy Smile Dent ${heading}`]);
     expect.soft(await page.locator(`${text} > p`).count(), `${text} > p`).toBe(isStory ? 5 : 2);
     if (isStory) {
       const closing = await page.$$eval('p.story-closing', (ps) => ps.map((x) => x.textContent.trim()));

@@ -1,18 +1,22 @@
-// The seven service pages laid out as mockup-2.png inside the site's header and footer (brief §4.6, §4.8).
+// The seven service pages: the site's own photo banner with title and breadcrumb (owner, 2026-11-28, D-63),
+// then the customer's content from mockup-2.png (brief §4.6, §4.8).
 import { test, expect, variantOf } from './lib/site.mjs';
 
 const SERVICES = [
-  ['odontologie', 'Odontologie'],
-  ['endodontie', 'Endodonție'],
-  ['parodontologie', 'Parodontologie'],
-  ['chirurgie-dentara', 'Chirurgie dentară și implantologie'],
-  ['protetica-dentara', 'Protetică dentară'],
-  ['pedodontie', 'Pedodonție'],
-  ['ortodontie', 'Ortodonție'],
+  ['odontologie', 'Odontologie', '118_h1080.jpg'],
+  ['endodontie', 'Endodonție', '103_h1080.jpg'],
+  ['parodontologie', 'Parodontologie', '165_h1080.jpg'],
+  ['chirurgie-dentara', 'Chirurgie dentară și implantologie', '200_h1080.jpg'],
+  ['protetica-dentara', 'Protetică dentară', '221_h1080.jpg'],
+  ['pedodontie', 'Pedodonție', '149_h1080.jpg'],
+  ['ortodontie', 'Ortodonție', '189_h1080.jpg'],
 ];
+const BUCKET = 'https://storage.googleapis.com/enjoysmiledent/';
+const words = (t) => t.replace(/\s+/g, ' ').trim();
 const QUOTE = '„Ai grijă de zâmbetul tău, indiferent de nevoile dentare. Echipa noastră îți oferă soluții '
   + 'personalizate, de la prevenție și tratamente dentare până la reabilitări complexe.”';
 const TURQUOISE = 'rgb(2, 181, 160)';
+const RING = 'rgb(168, 218, 220)';
 const TEXT = 'rgb(50, 59, 60)';
 
 const box = (loc) => loc.evaluate((e) => {
@@ -25,19 +29,40 @@ for (const width of [1280, 400]) {
   test.describe(`at ${width} px`, () => {
     test.use({ viewport: { width, height: 900 } });
 
-    for (const [slug, heading] of SERVICES) {
+    for (const [slug, heading, banner] of SERVICES) {
       const path = `/servicii/${slug}/`;
 
-      test(`page ${path}: title, quotation and bold text`, async ({ page }, testInfo) => {
+      test(`page ${path}: banner with title and breadcrumb, quotation and bold text`, async ({ page, baseURL }, testInfo) => {
         const { baseurl } = variantOf(testInfo);
         await page.goto(`${baseurl}${path}`, { waitUntil: 'load' });
 
-        const h1 = page.locator('h1.svc-title');
+        // The same banner block as Medici, Tarife, Foto, Contact: photo, 550 px, title bottom left.
+        const band = page.locator('div.sections');
+        await expect(band).toHaveCount(1);
+        expect(await styleOf(band, 'background-image'), 'banner photo').toBe(`url("${BUCKET}${banner}")`);
+        expect(await styleOf(band, 'background-position'), 'banner photo anchored at its top').toMatch(/ 0%$/);
+        const bandBox = await box(band);
+        expect(bandBox.top, 'banner top').toBe(0);
+        expect(bandBox.height, 'banner height').toBe(550);
+
+        const h1 = page.locator('h1');
         await expect(h1).toHaveCount(1);
-        expect((await h1.textContent()).trim(), 'title').toBe(heading);
-        expect(await styleOf(h1, 'color'), 'title colour').toBe(TURQUOISE);
+        expect(words(await h1.textContent()), 'h1').toBe(`Enjoy Smile Dent ${heading}`);
+        expect(words(await page.locator('.sections .pages-title h1 span').textContent()), 'title').toBe(heading);
         const navBottom = (await box(page.locator('#navbar'))).bottom;
-        expect((await box(h1)).top, 'title top vs fixed header bottom').toBeGreaterThanOrEqual(navBottom);
+        const title = await box(page.locator('.pages-title'));
+        expect(title.top, 'title block top vs fixed header bottom').toBeGreaterThanOrEqual(navBottom);
+        expect(title.bottom, 'title block bottom vs banner bottom').toBeLessThanOrEqual(bandBox.bottom);
+        expect(title.right, 'title block inside the page').toBeLessThanOrEqual(width);
+
+        const crumbs = page.locator('.pages-title p');
+        expect(words(await crumbs.textContent()), 'breadcrumb').toBe(`Acasă > Servicii > ${heading}`);
+        const links = crumbs.locator('a');
+        await expect(links).toHaveCount(2);
+        expect(await links.nth(0).evaluate((a) => a.href), 'Acasă target').toBe(new URL(`${baseurl}/`, baseURL).href);
+        expect(await links.nth(1).evaluate((a) => a.href), 'own crumb target').toBe(new URL(`${baseurl}${path}`, baseURL).href);
+
+        expect((await box(page.locator('.svc-text'))).top, 'text top vs banner bottom').toBeGreaterThanOrEqual(bandBox.bottom);
 
         const quote = page.locator('p.svc-quote');
         await expect(quote).toHaveCount(1);
@@ -120,7 +145,7 @@ for (const width of [1280, 400]) {
 }
 
 // Brief §4.4: exactly the doctors the customer named, in their order. "etc" adds nobody.
-const BUCKET = 'https://storage.googleapis.com/enjoysmiledent/';
+// The cards are the site's own team cards, as on Medici and the home page (D-63).
 const DOCTORS = {
   julieta: ['Dr. Julieta Răvnic', 'Stomatologie Generală - Estetică Dentară - Protetică', '256_squared.jpg'],
   cosmin: ['Dr. Cosmin Răvnic', 'Stomatologie generală - Protetică', '288_squared.jpg'],
@@ -149,24 +174,23 @@ for (const width of [1280, 400]) {
         const { baseurl } = variantOf(testInfo);
         await page.goto(`${baseurl}${path}`, { waitUntil: 'load' });
 
-        const cards = page.locator('ul.svc-doctors > li.svc-doctor');
+        const cards = page.locator('.svc-doctors .team-portrait');
         const names = await cards.evaluateAll((ls) => ls.map((l) => l.querySelector('h3')?.textContent.trim()));
         expect(names, 'card names in order').toEqual(expected.map((k) => DOCTORS[k][0]));
 
         for (let i = 0; i < expected.length; i++) {
           const card = cards.nth(i);
-          const photo = card.locator('.svc-photo');
+          const photo = card.locator('.tp-avatar img');
           await expect(photo, `card ${i} photo`).toHaveCount(1);
           const [name, line, file] = DOCTORS[expected[i]];
-          expect((await card.locator('p').textContent()).trim(), `${name} line`).toBe(line);
-          expect(await photo.evaluate((e) => e.tagName), `${name} photo tag`).toBe('IMG');
+          expect((await card.locator('h4').textContent()).trim(), `${name} line`).toBe(line);
           expect(await photo.getAttribute('src'), `${name} photo src`).toBe(`${BUCKET}${file}`);
-          expect(await styleOf(photo, 'border-top-color'), `card ${i} ring colour`).toBe(TURQUOISE);
+          expect(await styleOf(photo, 'border-top-color'), `card ${i} ring colour`).toBe(RING);
           expect(await styleOf(photo, 'border-top-style'), `card ${i} ring style`).toBe('solid');
           expect(await styleOf(photo, 'border-top-left-radius'), `card ${i} radius`).toBe('50%');
           const b = await box(photo);
           expect(b.width, `card ${i} photo width`).toBeGreaterThan(0);
-          expect(b.width, `card ${i} photo square`).toBe(b.height);
+          expect(Math.abs(b.width - b.height), `card ${i} photo square`).toBeLessThanOrEqual(1);
         }
 
         const boxes = [];

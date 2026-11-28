@@ -40,8 +40,9 @@ for (const { file, fills } of DRAWINGS) {
 const STORY = '/povestea-noastra/';
 const PARTS = {
   navbar: '#navbar',
+  banner: 'div.sections',
   h1: 'h1',
-  heading: 'h1 img',
+  heading: '.story-title img',
   text: '.story-text',
   photo: 'img.story-photo',
   tooth: 'img.story-tooth',
@@ -71,16 +72,37 @@ async function openStory(page, testInfo, width) {
 
 const naturalWidthOf = (page, sel) => page.$eval(sel, (img) => img.naturalWidth);
 
-test('story: the h1 is the drawn heading with the real text for screen readers, below the fixed header', async ({ page }, testInfo) => {
+// Owner, 2026-11-28 (D-63): the story page opens with the site's own photo banner, as every older page.
+test('story: banner with title and breadcrumb, then the drawn heading as decoration', async ({ page, baseURL }, testInfo) => {
   await openStory(page, testInfo, 1280);
-  await expect(page.getByRole('heading', { level: 1, name: 'Povestea noastră' })).toHaveCount(1);
-  expect(await page.$eval('h1', (h) => h.textContent.trim())).toBe('Povestea noastră');
-  const img = page.locator('h1 img');
+  const { baseurl } = variantOf(testInfo);
+  const words = (t) => t.replace(/\s+/g, ' ').trim();
+  await expect(page.locator('h1')).toHaveCount(1);
+  expect(words(await page.locator('h1').textContent())).toBe('Enjoy Smile Dent Povestea noastră');
+  expect(words(await page.locator('.sections .pages-title h1 span').textContent())).toBe('Povestea noastră');
+  expect(await page.$eval('div.sections', (e) => getComputedStyle(e).backgroundImage), 'banner photo')
+    .toBe('url("https://storage.googleapis.com/enjoysmiledent/307_h1080.jpg")');
+  expect(await page.$eval('div.sections', (e) => getComputedStyle(e).backgroundPosition), 'faces at the top stay visible')
+    .toBe('50% 0%');
+
+  const crumbs = page.locator('.pages-title p');
+  expect(words(await crumbs.textContent()), 'breadcrumb').toBe('Acasă > Povestea noastră');
+  const links = crumbs.locator('a');
+  await expect(links).toHaveCount(2);
+  expect(await links.nth(0).evaluate((a) => a.href), 'Acasă target').toBe(new URL(`${baseurl}/`, baseURL).href);
+  expect(await links.nth(1).evaluate((a) => a.href), 'own crumb target').toBe(new URL(`${baseurl}${STORY}`, baseURL).href);
+
+  const img = page.locator('.story-title img');
   await expect(img).toHaveCount(1);
   await expect(img).toBeVisible();
-  expect(await naturalWidthOf(page, 'h1 img'), 'heading drawing loads').toBeGreaterThan(0);
+  expect(await img.getAttribute('alt'), 'the drawing repeats the h1: decoration only').toBe('');
+  expect(await naturalWidthOf(page, '.story-title img'), 'heading drawing loads').toBeGreaterThan(0);
   const b = await boxesOf(page);
+  expect(b.banner.top, 'banner top').toBe(0);
+  expect(b.banner.height, 'banner height').toBe(550);
   expect(b.h1.top, 'h1 top under the navbar').toBeGreaterThanOrEqual(b.navbar.bottom);
+  expect(b.h1.bottom, 'h1 inside the banner').toBeLessThanOrEqual(b.banner.bottom);
+  expect(b.heading.top, 'drawing under the banner').toBeGreaterThanOrEqual(b.banner.bottom);
 });
 
 test('story at 1280: text beside the portrait, tooth on its corner, closing line and logo centred below', async ({ page }, testInfo) => {
@@ -127,7 +149,7 @@ test('story at 400: one column, in order, nothing outside the viewport', async (
   expect(scrollWidth).toBeLessThanOrEqual(innerWidth);
 
   expect(b.h1.top, 'h1 top under the navbar').toBeGreaterThanOrEqual(b.navbar.bottom);
-  const order = ['h1', 'text', 'photo', 'closing', 'logo'];
+  const order = ['h1', 'heading', 'text', 'photo', 'closing', 'logo'];
   for (let i = 1; i < order.length; i++) {
     expect(b[order[i]].top, `${order[i]} below ${order[i - 1]}`).toBeGreaterThanOrEqual(b[order[i - 1]].bottom);
   }
@@ -139,7 +161,7 @@ test('story at 400: one column, in order, nothing outside the viewport', async (
   expect(outside).toEqual([]);
 });
 
-// Owner, 2026-11-28: the drawn heading has the same white band above it (up to the header) and below it
+// Owner, 2026-11-28: the drawn heading has the same white band above it (up to the banner) and below it
 // (down to the top of the first line's capitals). The drawing is cropped to its ink, so its box is the ink.
 for (const width of [1440, 1280, 1000, 992, 768, 400]) {
   test(`story at ${width}: the heading has the same white band above and below`, async ({ page }, testInfo) => {
@@ -158,7 +180,7 @@ for (const width of [1440, 1280, 1000, 992, 768, 400]) {
       const baseline = line.top + (line.height - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 + m.fontBoundingBoxAscent;
       return baseline - m.actualBoundingBoxAscent;
     });
-    const above = b.heading.top - b.navbar.bottom;
+    const above = b.heading.top - b.banner.bottom;
     const below = capTop - b.heading.bottom;
     expect(above, 'band above the heading').toBeGreaterThanOrEqual(30);
     expect(Math.abs(above - below), `band above ${above} vs band below ${below}`).toBeLessThanOrEqual(2);

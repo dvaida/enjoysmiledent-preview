@@ -5,8 +5,10 @@ description: Povestea noastră a început acum 21 de ani, într-un cabinet din H
 img_base: https://storage.googleapis.com/enjoysmiledent
 ---
 <link rel="stylesheet" href="{{ '/css/story.css' | relative_url }}">
+{%- capture banner %}{{ page.img_base }}/307_h1080.jpg{% endcapture %}
+{% include page-banner.html image=banner title="Povestea noastră" %}
 <section class="story"><div class="container">
-<h1 class="story-title"><span class="sr-only">Povestea noastră</span><img src="{{ '/img/master/povestea-noastra.svg' | relative_url }}" alt=""></h1>
+<div class="story-title"><img src="{{ '/img/master/povestea-noastra.svg' | relative_url }}" alt=""></div>
 <div class="row">
 <div class="col-lg-7 story-text">
 <p>Povestea noastră a început <strong>acum 21 de ani</strong>, într-un cabinet din Huedin. A fost începutul unui drum profesional care, în timp, a devenit un proiect de echipă și o parte importantă din viața noastră.</p>

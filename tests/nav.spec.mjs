@@ -113,7 +113,7 @@ for (const p of ON) {
 
     await items.filter({ hasText: 'Parodontologie' }).click();
     await page.waitForURL(`${root}servicii/parodontologie/`);
-    expect.soft(await page.locator('h1').textContent(), 'h1').toBe('Parodontologie');
+    expect.soft(await page.locator('h1 span').textContent(), 'banner title').toBe('Parodontologie');
     expect.soft(siteLog.pageErrors, 'page errors').toEqual([]);
   });
 }

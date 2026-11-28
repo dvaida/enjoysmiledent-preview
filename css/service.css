@@ -1,18 +1,8 @@
-/* Service pages (_layouts/service.html), as mockup-2.png. */
+/* Service pages (_layouts/service.html): the site's banner, then the customer's content from mockup-2.png. */
 
-/* The header is fixed (180 px tall above 992 px, 130 px below): the page starts under it. */
+/* The banner carries the title; the section's own 1 px padding and the container's margins give the spacing. */
 .svc {
-    padding-top: 180px;
-}
-
-.svc > .container {
-    margin-top: 1.5rem;
-}
-
-.svc .svc-title {
-    color: #02b5a0;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    padding-bottom: 0;
 }
 
 .svc .svc-text p {
@@ -74,66 +64,16 @@
     text-decoration: none;
 }
 
-/* The doctors row: round photo with a turquoise ring, name, line under the name. */
+/* The doctors row: the site's team cards (stylesheet.css, 13. TEAM), centred.
+   aspect-ratio: a photo that fails to load keeps its round box. */
 .svc .svc-doctors {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    list-style: none;
-    margin: 3rem 0 0;
-    padding: 0;
+    margin-top: 3rem;
 }
 
-.svc .svc-doctor {
-    flex: 0 0 25%;
-    max-width: 25%;
-    margin-bottom: 1.5rem;
-    padding: 0 10px;
-    text-align: center;
-}
-
-/* Explicit width AND height: a photo that fails to load keeps its square box. */
-.svc .svc-photo {
+.svc .svc-doctors .tp-avatar img {
     display: block;
-    box-sizing: border-box;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 1rem;
-    border: 4px solid #02b5a0;
-    border-radius: 50%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-}
-
-.svc .svc-doctor h3 {
-    margin-bottom: 0.25rem;
-    color: #323B3C;
-    font-weight: 700;
-}
-
-.svc .svc-doctor p {
-    line-height: 1.5;
-    text-align: center;
-}
-
-@media (max-width: 992px) {
-    .svc {
-        padding-top: 130px;
-    }
-}
-
-@media (max-width: 991px) {
-    .svc .svc-doctor {
-        flex-basis: 50%;
-        max-width: 50%;
-    }
-}
-
-@media (max-width: 767px) {
-    .svc .svc-doctor {
-        flex-basis: 100%;
-        max-width: 100%;
-    }
 }
 
 @media (max-width: 991px) {

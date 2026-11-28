@@ -1,12 +1,11 @@
 /* The story page (povestea-noastra/index.html), laid out as mockup-1. */
 
-/* The drawn heading has the same white band above it (up to the header) and below it (down to the
-   capitals of the first line): 60 px, 40 px on the narrow header.
-   Above: the fixed header covers the top 180 px above 992 px (130 px at and under), and the container's
-   own top margin is dropped because it changes with the root font size.
+/* The page opens with the site's photo banner. The drawn heading under it has the same white band above
+   (up to the banner) and below (down to the capitals of the first line): 60 px, 40 px on the narrow header.
+   Above: the container's own top margin is dropped because it changes with the root font size.
    Below: the capitals of the first line start 9 px under the top of the paragraph. */
 .story {
-    padding-top: 240px;
+    padding-top: 60px;
 }
 
 .story .container {
@@ -88,7 +87,7 @@
 /* The header's own breakpoint. */
 @media (max-width: 992px) {
     .story {
-        padding-top: 170px;
+        padding-top: 40px;
     }
 
     .story-title {

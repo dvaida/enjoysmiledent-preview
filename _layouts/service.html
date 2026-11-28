@@ -3,25 +3,30 @@ layout: default
 img_base: https://storage.googleapis.com/enjoysmiledent
 ---
 <link rel="stylesheet" href="{{ '/css/service.css' | relative_url }}">
+{%- capture banner %}{{ layout.img_base }}/{{ page.banner }}{% endcapture %}
+{% include page-banner.html image=banner title=page.heading parent="Servicii" position=page.banner_position %}
 <section class="svc">
     <div class="container">
-        <h1 class="svc-title">{{ page.heading }}</h1>
         <div class="row">
             <div class="col-lg-7 svc-text">{{ content }}</div>
             <div class="col-lg-5"><img class="svc-picture" src="{{ '/img/servicii/colaj.jpg' | relative_url }}" alt="Tratamente stomatologice"></div>
         </div>
         <p class="svc-quote">„Ai grijă de zâmbetul tău, indiferent de nevoile dentare. Echipa noastră îți oferă soluții personalizate, de la prevenție și tratamente dentare până la reabilitări complexe.”</p>
         {%- assign slug = page.url | split: "/" | last %}{% assign keys = site.data.service_doctors[slug] %}
-        <ul class="svc-doctors">
+        <div class="row justify-content-center svc-doctors">
             {%- for key in keys %}
             {%- assign d = site.data.doctors[key] %}
-            <li class="svc-doctor">
-                <img class="svc-photo" src="{{ layout.img_base }}/{{ d.photo }}" alt="{{ d.name }}">
-                <h3>{{ d.name }}</h3>
-                <p>{{ d.line }}</p>
-            </li>
+            <div class="col-md-6 col-lg-4">
+                <div class="team-portrait">
+                    <figure class="tp-avatar"><img src="{{ layout.img_base }}/{{ d.photo }}" alt="{{ d.name }}"></figure>
+                    <div class="tp-caption">
+                        <h3>{{ d.name }}</h3>
+                        <h4>{{ d.line }}</h4>
+                    </div>
+                </div>
+            </div>
             {%- endfor %}
-        </ul>
+        </div>
     </div>
     <div class="svc-cta"><p>Programează o consultație!</p></div>
     <p class="svc-contact">

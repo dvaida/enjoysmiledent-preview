@@ -1,0 +1,14 @@
+{%- comment -%}
+The banner of every inner page, as Medici, Tarife, Foto and Contact write it by hand: photo, title bottom left, breadcrumb.
+Parameters: image (full URL), title, parent (optional: a middle crumb with no page of its own), position (optional).
+The photo is anchored at its top unless position says otherwise: the fixed header covers the banner's first 180 px
+and a photo cropped around its middle loses the faces.
+{%- endcomment -%}
+<div class="sections" style="height:550px; background-image: url('{{ include.image }}'); background-position: {{ include.position | default: 'center top' }}">
+    <div class="container">
+        <div class="pages-title">
+            <h1>Enjoy Smile Dent <br> <span>{{ include.title }}</span></h1>
+            <p><a href="{{ '/' | relative_url }}">Acasă</a> &nbsp; > &nbsp; {% if include.parent %}{{ include.parent }} &nbsp; > &nbsp; {% endif %}<a href="{{ page.url | relative_url }}">{{ include.title }}</a></p>
+        </div>
+    </div>
+</div>
