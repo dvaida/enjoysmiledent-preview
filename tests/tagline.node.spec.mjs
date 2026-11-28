@@ -6,7 +6,7 @@ import { test, expect } from '@playwright/test';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TAGLINE = 'Enjoy Smile Dent Florești - Cabinet Stomatologie Generală';
-const FILES = ['index.html', 'blog/index.html', 'contact/index.html', 'foto/index.html', 'medici/index.html', 'servicii/index.html'];
+const FILES = ['index.html', 'blog/index.html', 'contact/index.html', 'foto/index.html', 'medici/index.html', 'tarife/index.html'];
 
 for (const file of FILES) {
   test(`${file} has the agreed tagline`, () => {
