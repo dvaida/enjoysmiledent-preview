@@ -119,7 +119,7 @@ for (const width of [1280, 400]) {
   });
 }
 
-// Brief §4.4: the named doctors in the customer's order, then "Medic N" placeholder cards up to four.
+// Brief §4.4: exactly the doctors the customer named, in their order. "etc" adds nobody.
 const BUCKET = 'https://storage.googleapis.com/enjoysmiledent/';
 const DOCTORS = {
   julieta: ['Dr. Julieta Răvnic', 'Stomatologie Generală - Estetică Dentară - Protetică', '256_squared.jpg'],
@@ -129,13 +129,13 @@ const DOCTORS = {
   mihai: ['Dr. Mihai Sigartău', 'Medic specialist chirurgie dento-alveolară', 'male_medic.jpg'],
 };
 const CARDS = {
-  odontologie: ['julieta', 'cosmin', 'Medic 3', 'Medic 4'],
-  endodontie: ['julieta', 'cosmin', 'Medic 3', 'Medic 4'],
-  parodontologie: ['julieta', 'cosmin', 'Medic 3', 'Medic 4'],
+  odontologie: ['julieta', 'cosmin'],
+  endodontie: ['julieta', 'cosmin'],
+  parodontologie: ['julieta', 'cosmin'],
   'chirurgie-dentara': ['mihai', 'cosmin'],
-  'protetica-dentara': ['julieta', 'cosmin', 'Medic 3', 'Medic 4'],
-  pedodontie: ['maria', 'julieta', 'cosmin', 'Medic 4'],
-  ortodontie: ['ancuta', 'julieta', 'cosmin', 'Medic 4'],
+  'protetica-dentara': ['julieta', 'cosmin'],
+  pedodontie: ['maria', 'julieta', 'cosmin'],
+  ortodontie: ['ancuta', 'julieta', 'cosmin'],
 };
 
 for (const width of [1280, 400]) {
@@ -145,29 +145,22 @@ for (const width of [1280, 400]) {
     for (const [slug, expected] of Object.entries(CARDS)) {
       const path = `/servicii/${slug}/`;
 
-      test(`page ${path}: doctor cards, then placeholders`, async ({ page }, testInfo) => {
+      test(`page ${path}: only the named doctors' cards`, async ({ page }, testInfo) => {
         const { baseurl } = variantOf(testInfo);
         await page.goto(`${baseurl}${path}`, { waitUntil: 'load' });
 
         const cards = page.locator('ul.svc-doctors > li.svc-doctor');
         const names = await cards.evaluateAll((ls) => ls.map((l) => l.querySelector('h3')?.textContent.trim()));
-        expect(names, 'card names in order').toEqual(expected.map((k) => (DOCTORS[k] ? DOCTORS[k][0] : k)));
+        expect(names, 'card names in order').toEqual(expected.map((k) => DOCTORS[k][0]));
 
         for (let i = 0; i < expected.length; i++) {
           const card = cards.nth(i);
           const photo = card.locator('.svc-photo');
           await expect(photo, `card ${i} photo`).toHaveCount(1);
-          const doctor = DOCTORS[expected[i]];
-          if (doctor) {
-            const [name, line, file] = doctor;
-            expect((await card.locator('p').textContent()).trim(), `${name} line`).toBe(line);
-            expect(await photo.evaluate((e) => e.tagName), `${name} photo tag`).toBe('IMG');
-            expect(await photo.getAttribute('src'), `${name} photo src`).toBe(`${BUCKET}${file}`);
-          } else {
-            expect((await photo.textContent()).trim(), `${expected[i]} disc text`).toBe('Poza');
-            expect(await styleOf(photo, 'background-color'), `${expected[i]} disc colour`).toBe('rgb(35, 31, 32)');
-            await expect(card.locator('p'), `${expected[i]} line`).toHaveCount(0);
-          }
+          const [name, line, file] = DOCTORS[expected[i]];
+          expect((await card.locator('p').textContent()).trim(), `${name} line`).toBe(line);
+          expect(await photo.evaluate((e) => e.tagName), `${name} photo tag`).toBe('IMG');
+          expect(await photo.getAttribute('src'), `${name} photo src`).toBe(`${BUCKET}${file}`);
           expect(await styleOf(photo, 'border-top-color'), `card ${i} ring colour`).toBe(TURQUOISE);
           expect(await styleOf(photo, 'border-top-style'), `card ${i} ring style`).toBe('solid');
           expect(await styleOf(photo, 'border-top-left-radius'), `card ${i} radius`).toBe('50%');

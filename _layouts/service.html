@@ -14,15 +14,11 @@ img_base: https://storage.googleapis.com/enjoysmiledent
         {%- assign slug = page.url | split: "/" | last %}{% assign keys = site.data.service_doctors[slug] %}
         <ul class="svc-doctors">
             {%- for key in keys %}
+            {%- assign d = site.data.doctors[key] %}
             <li class="svc-doctor">
-                {%- if key == "placeholder" %}
-                <div class="svc-photo svc-photo-placeholder">Poza</div>
-                <h3>Medic {{ forloop.index }}</h3>
-                {%- else %}{% assign d = site.data.doctors[key] %}
                 <img class="svc-photo" src="{{ layout.img_base }}/{{ d.photo }}" alt="{{ d.name }}">
                 <h3>{{ d.name }}</h3>
                 <p>{{ d.line }}</p>
-                {%- endif %}
             </li>
             {%- endfor %}
         </ul>

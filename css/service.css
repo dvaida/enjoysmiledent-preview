@@ -105,17 +105,6 @@
     object-fit: cover;
 }
 
-.svc .svc-photo-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #231f20;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-}
-
 .svc .svc-doctor h3 {
     margin-bottom: 0.25rem;
     color: #323B3C;
