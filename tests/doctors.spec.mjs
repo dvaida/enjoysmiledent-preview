@@ -36,3 +36,20 @@ test('the header still shows Facebook and Instagram', async ({ page }, testInfo)
   await expect(page.locator('.top-header .fa-facebook-f')).toHaveCount(1);
   await expect(page.locator('.top-header .fa-instagram')).toHaveCount(1);
 });
+
+// Brief §4.11: Dr. Cristescu's line is the same everywhere. Per portrait, slick clones included.
+for (const p of ['/', '/medici/']) {
+  test(`page ${p}: Dr. Maria Cristescu is Medic specialist pedodonție`, async ({ page }, testInfo) => {
+    const { baseurl } = variantOf(testInfo);
+    await page.goto(`${baseurl}${p}`, { waitUntil: 'load' });
+    const portraits = page.locator('.team-portrait').filter({
+      has: page.locator('h3', { hasText: /^Dr\. Maria Cristescu$/ }),
+    });
+    const n = await portraits.count();
+    expect(n, 'Dr. Maria Cristescu portraits').toBeGreaterThan(0);
+    for (let i = 0; i < n; i++) {
+      expect.soft((await portraits.nth(i).locator('h4').textContent()).trim(), `portrait ${i}`)
+        .toBe('Medic specialist pedodonție');
+    }
+  });
+}
