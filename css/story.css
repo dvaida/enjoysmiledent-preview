@@ -1,0 +1,109 @@
+/* The story page (povestea-noastra/index.html), laid out as mockup-1. */
+
+/* The fixed header covers the top 180 px above 992 px (130 px at and under); .container adds 3rem. */
+.story {
+    padding-top: 150px;
+}
+
+.story .container {
+    margin-bottom: 4rem;
+}
+
+.story-title {
+    margin: 0 0 70px;
+    line-height: 0;
+}
+
+/* The drawing is 231 x 47.4; the mockup shows it at about twice that. */
+.story-title img {
+    display: block;
+    width: 462px;
+    max-width: 100%;
+    height: auto;
+}
+
+.story-text p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #323B3C;
+    text-align: justify;
+    margin-bottom: 1.8em;
+}
+
+/* The site's reset sets strong to font: inherit. */
+.story-text strong {
+    font-weight: 600;
+}
+
+.story-text p:last-child {
+    margin-bottom: 0;
+}
+
+.story-photo-wrap {
+    position: relative;
+    width: 276px;
+    margin: 0 0 0 auto;
+}
+
+/* Explicit width AND height: a photo that fails to load keeps the portrait box. */
+.story-photo {
+    display: block;
+    width: 276px;
+    height: 442px;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+/* The tooth sits over the photo's bottom-left corner, sticking out left and below. */
+.story-tooth {
+    position: absolute;
+    left: -36px;
+    bottom: -46px;
+    width: 66px;
+    height: auto;
+}
+
+.story-closing {
+    margin: 180px auto 0;
+    max-width: 1080px;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.8;
+    color: #323B3C;
+    text-align: center;
+}
+
+.story-logo {
+    display: block;
+    width: 120px;
+    height: auto;
+    margin: 90px auto 0;
+}
+
+@media (max-width: 991.98px) {
+    .story {
+        padding-top: 100px;
+    }
+
+    .story-title {
+        margin-bottom: 40px;
+    }
+
+    .story-photo-wrap {
+        margin: 3rem auto 0;
+    }
+
+    .story-closing {
+        margin-top: 100px;
+    }
+
+    .story-logo {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .story-text p {
+        text-align: left;
+    }
+}
