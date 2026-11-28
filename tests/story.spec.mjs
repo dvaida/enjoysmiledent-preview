@@ -138,3 +138,29 @@ test('story at 400: one column, in order, nothing outside the viewport', async (
     .map(([el, r]) => `${el.tagName.toLowerCase()}.${[...el.classList].join('.')} ${r.left}-${r.right}`));
   expect(outside).toEqual([]);
 });
+
+// Owner, 2026-11-28: the drawn heading has the same white band above it (up to the header) and below it
+// (down to the top of the first line's capitals). The drawing is cropped to its ink, so its box is the ink.
+for (const width of [1440, 1280, 1000, 992, 768, 400]) {
+  test(`story at ${width}: the heading has the same white band above and below`, async ({ page }, testInfo) => {
+    await openStory(page, testInfo, width);
+    await page.evaluate(() => document.fonts.ready);
+    const b = await boxesOf(page);
+    const capTop = await page.$eval('.story-text p', (p) => {
+      const range = document.createRange();
+      range.setStart(p.firstChild, 0);
+      range.setEnd(p.firstChild, 1);
+      const line = range.getBoundingClientRect();
+      const cs = getComputedStyle(p);
+      const ctx = document.createElement('canvas').getContext('2d');
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const m = ctx.measureText(p.firstChild.textContent[0]);
+      const baseline = line.top + (line.height - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 + m.fontBoundingBoxAscent;
+      return baseline - m.actualBoundingBoxAscent;
+    });
+    const above = b.heading.top - b.navbar.bottom;
+    const below = capTop - b.heading.bottom;
+    expect(above, 'band above the heading').toBeGreaterThanOrEqual(30);
+    expect(Math.abs(above - below), `band above ${above} vs band below ${below}`).toBeLessThanOrEqual(2);
+  });
+}
