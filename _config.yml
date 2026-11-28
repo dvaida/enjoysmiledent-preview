@@ -19,3 +19,5 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+baseurl: /enjoysmiledent-preview
+preview: true
