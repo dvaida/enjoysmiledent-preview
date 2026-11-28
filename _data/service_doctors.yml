@@ -1,0 +1,8 @@
+# Doctors on each service page, in order. "placeholder" shows a "Medic N" card (N = its place in the row).
+odontologie: [julieta, cosmin, placeholder, placeholder]
+endodontie: [julieta, cosmin, placeholder, placeholder]
+parodontologie: [julieta, cosmin, placeholder, placeholder]
+chirurgie-dentara: [mihai, cosmin]
+protetica-dentara: [julieta, cosmin, placeholder, placeholder]
+pedodontie: [maria, julieta, cosmin, placeholder]
+ortodontie: [ancuta, julieta, cosmin, placeholder]
