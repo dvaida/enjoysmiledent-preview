@@ -6,7 +6,7 @@ const SITE = 'Enjoy Smile Dent Florești - Cabinet Stomatologie Generală';
 const HOME_DESCRIPTION = 'Consultație stomatologică, Control stomatologic, Sănătate orală, Albirea dinților, '
   + 'Odontoterapie, Endodonție, Protetică dentară, Implant dentar, Chirurgie dentară, Pedodonție, Ortodonție';
 const SUB_PAGES = {
-  '/servicii/': 'Servicii',
+  '/tarife/': 'Tarife',
   '/medici/': 'Medici',
   '/foto/': 'Galerie Foto',
   '/blog/': 'Blog',

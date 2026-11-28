@@ -27,6 +27,9 @@ export function filesUnder(dir) {
     .sort();
 }
 
+// Forwarding stubs, covered by forward.spec: no menu, header or site title, so pagesOf leaves them out.
+export const FORWARDS = ['/servicii/'];
+
 // Every **/*.html of the built variant as a URL path relative to the variant root, with a leading
 // slash: index.html -> '/', blog/index.html -> '/blog/', a/b.html -> '/a/b.html'. Prefix with
 // variant.baseurl to navigate. prod and preview build the same source, so they list the same paths.
@@ -35,7 +38,8 @@ export function pagesOf(variant) {
   if (!fs.existsSync(dir)) throw new Error(`${dir} does not exist: run npm run build first`);
   return filesUnder(dir)
     .filter((f) => f.endsWith('.html'))
-    .map((f) => `/${f.replace(/(^|\/)index\.html$/, '$1')}`);
+    .map((f) => `/${f.replace(/(^|\/)index\.html$/, '$1')}`)
+    .filter((p) => !FORWARDS.includes(p));
 }
 
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]']);
